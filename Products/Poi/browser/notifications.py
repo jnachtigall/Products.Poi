@@ -97,6 +97,7 @@ class NewIssueMail(BasePoiMail):
 
         issueText = context.getDetails(mimetype="text/x-web-intelligent")
         paras = issueText.splitlines()
+        # FIXME: wrong for html mail (maybe also in above 2 lines of code)
         issueDetails = '\n\n'.join([wrapper.fill(p) for p in paras])
         tracker = context.getTracker()
         mapping = dict(
@@ -162,6 +163,7 @@ class NewResponseMail(BasePoiMail):
         # interpreted as a literal block after the double colon behind
         # the 'Response Details' header.  This only really matters
         # when someone interprets this as reStructuredText though.
+        # FIXME: wrong for html mail  (maybe also in above 2 lines of code)
         responseDetails = u'\n\n'.join([wrapper.fill(p) for p in paras])
 
         changes = []
